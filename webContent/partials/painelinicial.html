@@ -1,0 +1,103 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<body>
+
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="well well-sm">
+					<button type="button" class="btn btn-primary"
+						ng-click="abreCadastroNoticia()">Nova Notícia</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container" ng-show="showCadastro">
+		<form ng-submit="processaFormNoticia()">
+
+			<div class="row mbottom">
+				<div class="col-xs-3 text-right">Título:</div>
+				<div class="col-xs-9">
+					<input type="text" class="form-control" ng-model="noticia.titulo"
+						required>
+				</div>
+			</div>
+
+			<div class="row mbottom">
+				<div class="col-xs-3 text-right">Descrição:</div>
+				<div class="col-xs-9">
+					<input type="text" class="form-control"
+						ng-model="noticia.descricao">
+				</div>
+			</div>
+
+			<div class="row mbottom">
+				<div class="col-xs-3 text-right">Data:</div>
+				<div class="col-xs-9">
+					<input class="form-control" ui-date="dateOptions"
+						ng-model="noticia.data">
+				</div>
+			</div>
+
+			<div class="row mbottom">
+				<div class="col-xs-3 text-right">Texto:</div>
+				<div class="col-xs-9">
+					<textarea class="form-control" ng-model="noticia.texto" rows="5"></textarea>
+				</div>
+			</div>
+
+			<div class="row mbottom">
+				<div class="col-xs-9 col-xs-offset-3">
+					<button class="btn btn-danger" type="submit"
+						ng-show="noticia.id== -1">Inserir</button>
+					<button class="btn btn-success" type="submit"
+						ng-show="noticia.id!= -1">Alterar</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+
+				<table class="table table-bordered table-striped table-hover">
+					<thead>
+						<tr>
+							<th width="90">Data</th>
+							<th>Titulo</th>
+							<th>Descrição</th>
+						</tr>
+					</thead>
+
+					<tbody>
+
+						<tr ng-repeat="noticia in allNoticias">
+							<td>{{ noticia.data }}</td>
+							<td>{{ noticia.titulo }}</td>
+							<td>{{ noticia.descricao }}</td>
+							<td>
+								<button type="button" class="btn btn-default"
+									ng-click="getNoticia(noticia.id)">A</button>
+								<button type="button" class="btn btn-danger"
+									ng-click="excluiNoticia(noticia.id)">
+									<i class="glyphicon glyphicon-trash"> </i>
+								</button>
+							</td>
+							<td><a href="#/gerenciarImagens/{{noticia.id}}"
+								class="btn btn-danger">I</a></td>
+
+						</tr>
+
+					</tbody>
+
+				</table>
+
+			</div>
+		</div>
+	</div>
+
+</body>
